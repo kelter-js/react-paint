@@ -8,6 +8,4 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(logger))
 );
 
-store.dispatch({type: "TEST_ACTION"})
-
 export default store;
