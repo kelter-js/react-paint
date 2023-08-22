@@ -1,0 +1,13 @@
+import rootReducer from "./rootReducer";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore, applyMiddleware } from "redux";
+import { logger } from "redux-logger";
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(logger))
+);
+
+store.dispatch({type: "TEST_ACTION"})
+
+export default store;
