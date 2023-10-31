@@ -1,11 +1,19 @@
-import rootReducer from "./rootReducer";
-import { composeWithDevTools } from "redux-devtools-extension";
-import { createStore, applyMiddleware } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { logger } from "redux-logger";
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(logger))
-);
+import { currentStroke } from "./modules/currentStroke/slice";
+import { modalVisible } from "./modules/modals/slice";
+import historyIndex from "./modules/historyIndex/slice";
+import strokes from "./modules/strokes/slice";
+
+const store = configureStore({
+  reducer: {
+    historyIndex,
+    strokes,
+    currentStroke,
+    modalVisible,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+});
 
 export default store;

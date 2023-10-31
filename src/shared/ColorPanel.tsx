@@ -1,6 +1,7 @@
-import { useDispatch } from "react-redux";
-import { setStrokeColor } from "../modules/currentStroke/actions";
 import { useMemo } from "react";
+import { useDispatch } from "react-redux";
+
+import { setStrokeColor } from "../modules/currentStroke/slice";
 
 const COLORS: string[] = [];
 

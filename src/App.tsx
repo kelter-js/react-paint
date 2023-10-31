@@ -1,17 +1,17 @@
-import { useEffect, useRef, MouseEvent } from "react";
+import { useEffect, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { drawStroke, clearCanvas, setCanvasSize } from "./utils/canvasUtils";
-import "./index.css";
-import EditPanel from "./shared/EditPanel";
+import { beginStroke, updateStroke } from "./modules/currentStroke/slice";
+import { endStroke } from "./modules/sharedActions";
+import { useCanvas } from "./CanvasContext";
 import { ColorPanel } from "./shared/ColorPanel";
-import {
-  beginStroke,
-  endStroke,
-  updateStroke,
-} from "./modules/currentStroke/actions";
-import { strokesSelector } from "./modules/strokes/reducer";
-import { currentStrokeSelector } from "./modules/currentStroke/reducer";
-import { historyIndexSelector } from "./modules/historyIndex/reducer";
+import { strokesSelector } from "./modules/strokes/slice";
+import { currentStrokeSelector } from "./modules/currentStroke/slice";
+import { historyIndexSelector } from "./modules/historyIndex/slice";
+import FilePanel from "./shared/FilePanel";
+import EditPanel from "./shared/EditPanel";
+import "./index.css";
 
 const WIDTH = 1024;
 const HEIGHT = 768;
@@ -20,7 +20,7 @@ const App = (): JSX.Element => {
   const currentStroke = useSelector(currentStrokeSelector);
   const isDrawing = !!currentStroke.points.length;
 
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useCanvas();
 
   const historyIndex = useSelector(historyIndexSelector);
   const strokes = useSelector(strokesSelector);
@@ -43,12 +43,12 @@ const App = (): JSX.Element => {
 
   const startDrawing = ({ nativeEvent }: MouseEvent<HTMLCanvasElement>) => {
     const { offsetX, offsetY } = nativeEvent;
-    dispatch(beginStroke(offsetX, offsetY));
+    dispatch(beginStroke({ x: offsetX, y: offsetY }));
   };
 
   const endDrawing = () => {
     if (isDrawing) {
-      dispatch(endStroke(historyIndex, currentStroke));
+      dispatch(endStroke({ historyIndex, stroke: currentStroke }));
     }
   };
 
@@ -58,7 +58,7 @@ const App = (): JSX.Element => {
     }
     const { offsetX, offsetY } = nativeEvent;
 
-    dispatch(updateStroke(offsetX, offsetY));
+    dispatch(updateStroke({ x: offsetX, y: offsetY }));
   };
 
   const dispatch = useDispatch();
@@ -107,7 +107,10 @@ const App = (): JSX.Element => {
       </div>
 
       <EditPanel />
+
       <ColorPanel />
+
+      <FilePanel />
 
       <canvas
         onMouseDown={startDrawing}
