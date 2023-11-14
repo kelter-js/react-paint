@@ -9,6 +9,7 @@ import { ColorPanel } from "./shared/ColorPanel";
 import { strokesSelector } from "./modules/strokes/slice";
 import { currentStrokeSelector } from "./modules/currentStroke/slice";
 import { historyIndexSelector } from "./modules/historyIndex/slice";
+import { ModalLayer } from "./components/ModalLayer";
 import FilePanel from "./shared/FilePanel";
 import EditPanel from "./shared/EditPanel";
 import "./index.css";
@@ -111,6 +112,8 @@ const App = (): JSX.Element => {
       <ColorPanel />
 
       <FilePanel />
+
+      <ModalLayer />
 
       <canvas
         onMouseDown={startDrawing}
