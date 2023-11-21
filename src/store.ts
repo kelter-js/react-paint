@@ -1,4 +1,9 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  ThunkAction,
+  Action,
+  ThunkDispatch,
+} from "@reduxjs/toolkit";
 import { logger } from "redux-logger";
 
 import { currentStroke } from "./modules/currentStroke/slice";
@@ -18,5 +23,6 @@ const store = configureStore({
 });
 
 export type AppThunk = ThunkAction<void, RootState, unknown, Action<string>>;
+export type AppDispatch = ThunkDispatch<void, RootState, Action>;
 
 export default store;
