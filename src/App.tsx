@@ -40,7 +40,7 @@ const App = (): JSX.Element => {
         drawStroke(context, stroke.points, stroke.color);
       });
     });
-  }, [historyIndex]);
+  }, [historyIndex, strokes]);
 
   const startDrawing = ({ nativeEvent }: MouseEvent<HTMLCanvasElement>) => {
     const { offsetX, offsetY } = nativeEvent;

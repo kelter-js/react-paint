@@ -11,9 +11,7 @@ const initialState: RootState["projectsList"] = {
 
 export const getProjectsList = createAsyncThunk(
   "GET_PROJECTS_LIST",
-  async () => {
-    return fetchProjectsList();
-  }
+  async () => await fetchProjectsList()
 );
 
 const slice = createSlice({
