@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { endStroke } from "../sharedActions";
-import { RootState } from "../../utils/types";
+import { RootState } from "../../types";
 
 export const historyIndex = createSlice({
   name: "historyIndex",

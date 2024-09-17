@@ -1,15 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../utils/types";
-
-export type ModalState = {
-  isShown: boolean;
-  modalName: string | null;
-};
-
-const initialState: ModalState = {
-  isShown: true,
-  modalName: null,
-};
+import { RootState } from "../../types";
+import { initialState } from "../../constants";
 
 const slice = createSlice({
   name: "modal",

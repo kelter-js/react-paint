@@ -1,4 +1,5 @@
-import { Point } from "./types";
+import { DOUBLE } from "../constants";
+import { Point } from "../types";
 
 export const clearCanvas = (canvas: HTMLCanvasElement) => {
   const context = canvas.getContext("2d");
@@ -10,8 +11,6 @@ export const clearCanvas = (canvas: HTMLCanvasElement) => {
   context.fillStyle = "white";
   context.fillRect(0, 0, canvas.width, canvas.height);
 };
-
-const DOUBLE = 2;
 
 export const setCanvasSize = (
   canvas: HTMLCanvasElement,

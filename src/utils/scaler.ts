@@ -1,7 +1,4 @@
-type TScalerArgs = {
-  file: Blob;
-  scale: number;
-};
+import { TScalerArgs } from "../types";
 
 const getBase64Thumbnail = ({
   file,

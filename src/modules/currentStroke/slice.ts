@@ -1,6 +1,6 @@
 import { endStroke } from "../sharedActions";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState, Point } from "../../utils/types";
+import { RootState, Point } from "../../types";
 
 const initialState: RootState["currentStroke"] = {
   points: [],

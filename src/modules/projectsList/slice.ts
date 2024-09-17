@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { RootState } from "../../utils/types";
+import { RootState } from "../../types";
 import fetchProjectsList from "./api";
 
 const initialState: RootState["projectsList"] = {

@@ -1,5 +1,5 @@
 import { AnyAction, createAction } from "@reduxjs/toolkit";
-import { Stroke } from "../../utils/types";
+import { Stroke } from "../../types";
 
 export const END_STROKE = "END_STROKE";
 

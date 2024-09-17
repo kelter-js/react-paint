@@ -9,7 +9,7 @@ import logger from "redux-logger";
 import { currentStroke } from "./modules/currentStroke/slice";
 import { modalVisible } from "./modules/modals/slice";
 import { projectsList } from "./modules/projectsList/slice";
-import { RootState } from "./utils/types";
+import { RootState } from "./types";
 import historyIndex from "./modules/historyIndex/slice";
 import strokes from "./modules/strokes/slice";
 

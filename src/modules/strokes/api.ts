@@ -1,4 +1,4 @@
-import { Stroke } from "../../utils/types";
+import { Stroke } from "../../types";
 
 const newProject = (name: string, strokes: Stroke[], image: string) =>
   fetch("http://localhost:4000/projects/new", {
