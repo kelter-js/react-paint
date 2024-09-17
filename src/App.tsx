@@ -3,19 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { drawStroke, clearCanvas, setCanvasSize } from "./utils/canvasUtils";
 import { beginStroke, updateStroke } from "./modules/currentStroke/slice";
-import { endStroke } from "./modules/sharedActions";
-import { useCanvas } from "./CanvasContext";
-import { ColorPanel } from "./shared/ColorPanel";
-import { strokesSelector } from "./modules/strokes/slice";
 import { currentStrokeSelector } from "./modules/currentStroke/slice";
 import { historyIndexSelector } from "./modules/historyIndex/slice";
+import { strokesSelector } from "./modules/strokes/slice";
 import { ModalLayer } from "./components/ModalLayer";
+import { endStroke } from "./modules/sharedActions";
+import { ColorPanel } from "./shared/ColorPanel";
+import { useCanvas } from "./CanvasContext";
+import { HEIGHT, WIDTH } from "./constants";
 import FilePanel from "./shared/FilePanel";
 import EditPanel from "./shared/EditPanel";
 import "./index.css";
-
-const WIDTH = 1024;
-const HEIGHT = 768;
 
 const App = (): JSX.Element => {
   const currentStroke = useSelector(currentStrokeSelector);
@@ -57,6 +55,7 @@ const App = (): JSX.Element => {
     if (!isDrawing) {
       return;
     }
+
     const { offsetX, offsetY } = nativeEvent;
 
     dispatch(updateStroke({ x: offsetX, y: offsetY }));
@@ -71,6 +70,7 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     const { canvas, context } = getCanvasWithContext();
+
     if (!canvas || !context) {
       return;
     }
@@ -98,20 +98,21 @@ const App = (): JSX.Element => {
   }, [currentStroke]);
 
   return (
-    <div className="window">
+    <div className="window main-container">
       <div className="title-bar">
-        <div className="title-bar-text">Redux Paint</div>
+        <div className="title-bar-text">Paint</div>
 
         <div className="title-bar-controls">
           <button aria-label="Close" />
         </div>
       </div>
 
-      <EditPanel />
+      <div className="controls-container">
+        <EditPanel />
+        <FilePanel />
+      </div>
 
       <ColorPanel />
-
-      <FilePanel />
 
       <ModalLayer />
 
@@ -120,6 +121,8 @@ const App = (): JSX.Element => {
         onMouseUp={endDrawing}
         onMouseOut={endDrawing}
         onMouseMove={draw}
+        width="94"
+        height="120"
         ref={canvasRef}
       />
     </div>

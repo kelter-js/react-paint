@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AppDispatch } from "../store";
@@ -22,28 +22,38 @@ const ProjectsModal = () => {
     dispatch(hide());
   };
 
+  const handleLoadProject = (id: string) => () => onLoadProject(id);
+
+  const handleCloseModal = () => dispatch(hide());
+
+  const projectsView = useMemo(() => {
+    if (projectsList) {
+      return projectsList.map((project) => (
+        <div
+          key={project.id}
+          onClick={handleLoadProject(project.id)}
+          className="project-card"
+        >
+          <img src={project.image} alt="thumbnail" />
+          <div>{project.name}</div>
+        </div>
+      ));
+    }
+
+    return [];
+  }, [projectsList, onLoadProject]);
+
   return (
     <div className="window modal-panel">
       <div className="title-bar">
         <div className="title-bar-text">Load Project</div>
 
         <div className="title-bar-controls">
-          <button aria-label="Close" onClick={() => dispatch(hide())} />
+          <button aria-label="Close" onClick={handleCloseModal} />
         </div>
       </div>
 
-      <div className="projects-container">
-        {(projectsList || []).map((project) => (
-          <div
-            key={project.id}
-            onClick={() => onLoadProject(project.id)}
-            className="project-card"
-          >
-            <img src={project.image} alt="thumbnail" />
-            <div>{project.name}</div>
-          </div>
-        ))}
-      </div>
+      <div className="projects-container">{projectsView}</div>
     </div>
   );
 };
