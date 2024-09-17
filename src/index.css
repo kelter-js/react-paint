@@ -7,6 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 code {
@@ -14,10 +15,19 @@ code {
     monospace;
 }
 
+html {
+  --white: #fff;
+  --light-grey: #dfdfdf;
+  --dark: #0a0a0a;
+}
+
 canvas {
-  transform: translate3d(-50%, 0, 0);
+  position: sticky;
+  width: 100%;
+  top: 10%;
+  left: 50%;
+  transform: translate(-40%, 20px);
   cursor: url(./icons/pencil.png) 0 34, auto;
-  margin: 100px 50%;
 }
 
 .colors {
@@ -31,30 +41,33 @@ canvas {
   width: 24px;
   height: 24px;
   cursor: pointer;
-  box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf,
-    inset 2px 2px #0a0a0a;
+  box-shadow: inset -1px -1px var(--white), inset 1px 1px grey,
+    inset -2px -2px var(--light-grey), inset 2px 2px var(--dark);
 }
 
 .colors-panel {
   position: fixed;
-  bottom: 40px;
-  left: 50%;
+  top: 40px;
+  left: 12%;
   transform: translate3d(-50%, 0, 0);
   z-index: 10;
+  height: 400px;
 }
 
-.edit {
-  position: fixed;
-  bottom: 40px;
-  left: 30%;
-  z-index: 10;
+.colors-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 355px;
+  overflow-y: scroll;
 }
 
-.file {
+.controls-container {
   position: fixed;
-  bottom: 40px;
-  right: 20%;
+  bottom: 40%;
+  left: 1%;
   z-index: 10;
+  display: flex;
+  gap: 16px;
 }
 
 .modal-panel {
@@ -63,6 +76,12 @@ canvas {
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   z-index: 10;
+}
+
+.main-container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
 }
 
 .projects-container {
