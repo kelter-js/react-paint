@@ -1,3 +1,6 @@
+import { AnyAction } from "@reduxjs/toolkit";
+import { END_STROKE } from "./constants";
+
 export type Point = {
   x: number;
   y: number;
@@ -35,3 +38,15 @@ export type ModalState = {
   isShown: boolean;
   modalName: string | null;
 };
+
+export type TSaveProjectArg = {
+  projectName: string;
+  thumbnail: string;
+};
+
+export type Action =
+  | AnyAction
+  | {
+      type: typeof END_STROKE;
+      payload: { stroke: Stroke; historyIndex: number };
+    };

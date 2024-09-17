@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../types";
-import { initialState } from "../../constants";
+import { modalInitiateState } from "../../constants";
 
 const slice = createSlice({
   name: "modal",
-  initialState,
+  initialState: modalInitiateState,
   reducers: {
     show: (state, action: PayloadAction<string>) => {
       state.isShown = true;

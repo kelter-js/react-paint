@@ -1,15 +1,12 @@
-import { endStroke } from "../sharedActions";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState, Point } from "../../types";
 
-const initialState: RootState["currentStroke"] = {
-  points: [],
-  color: "#000",
-};
+import { currentStrokeInitialState } from "../../constants";
+import { RootState, Point } from "../../types";
+import { endStroke } from "../sharedActions";
 
 const slice = createSlice({
   name: "currentStroke",
-  initialState,
+  initialState: currentStrokeInitialState,
   reducers: {
     beginStroke: (state, action: PayloadAction<Point>) => {
       state.points = [action.payload];
@@ -27,6 +24,7 @@ const slice = createSlice({
     });
   },
 });
+
 export const currentStroke = slice.reducer;
 
 export const { beginStroke, updateStroke, setStrokeColor } = slice.actions;

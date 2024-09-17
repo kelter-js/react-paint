@@ -1,13 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+import { projectsListInitialState } from "../../constants";
 import { RootState } from "../../types";
 import fetchProjectsList from "./api";
-
-const initialState: RootState["projectsList"] = {
-  error: undefined,
-  pending: false,
-  projects: [],
-};
 
 export const getProjectsList = createAsyncThunk(
   "GET_PROJECTS_LIST",
@@ -16,7 +11,7 @@ export const getProjectsList = createAsyncThunk(
 
 const slice = createSlice({
   name: "projectsList",
-  initialState,
+  initialState: projectsListInitialState,
   reducers: {},
 
   extraReducers: (builder) => {
