@@ -1,9 +1,10 @@
 import { saveAs } from "file-saver";
 import { useDispatch } from "react-redux";
 
-import { useCanvas } from "../CanvasContext";
 import { getCanvasImage } from "../utils/canvasUtils";
+import { useCanvas } from "../CanvasContext";
 import { show } from "../modules/modals/slice";
+import { MODAL_TYPES } from "../entities/modal";
 
 const FilePanel = () => {
   const canvasRef = useCanvas();
@@ -20,8 +21,8 @@ const FilePanel = () => {
     saveAs(file, "drawing.png");
   };
 
-  const handleSave = () => dispatch(show("PROJECTS_SAVE_MODAL"));
-  const handleLoad = () => dispatch(show("PROJECTS_MODAL"));
+  const handleSave = () => dispatch(show(MODAL_TYPES.PROJECTS_SAVE_MODAL));
+  const handleLoad = () => dispatch(show(MODAL_TYPES.PROJECTS_MODAL));
 
   return (
     <div className="window file">

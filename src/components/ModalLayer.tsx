@@ -1,18 +1,19 @@
 import { useSelector } from "react-redux";
 
-import ProjectsModal from "./ProjectsModal";
-import ProjectSaveModal from "./ProjectSaveModal";
 import { modalNameSelector } from "../modules/modals/slice";
+import { MODAL_TYPES } from "../entities/modal";
+import ProjectSaveModal from "./ProjectSaveModal";
+import ProjectsModal from "./ProjectsModal";
 
 export const ModalLayer = (): JSX.Element | null => {
   const modalName = useSelector(modalNameSelector);
 
   switch (modalName) {
-    case "PROJECTS_MODAL": {
+    case MODAL_TYPES.PROJECTS_MODAL: {
       return <ProjectsModal />;
     }
 
-    case "PROJECTS_SAVE_MODAL": {
+    case MODAL_TYPES.PROJECTS_SAVE_MODAL: {
       return <ProjectSaveModal />;
     }
 
