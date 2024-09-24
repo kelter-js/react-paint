@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+import { STROKES_ACTION_TYPES } from "../../entities/strokes";
+import { RootState, TSaveProjectArg } from "../../types";
 import { strokesInitialState } from "../../constants";
 import { endStroke } from "../sharedActions";
-import { RootState, TSaveProjectArg } from "../../types";
 import newProject, { getProject } from "./api";
 
 export const loadProject = createAsyncThunk(
-  "LOAD_PROJECT",
+  STROKES_ACTION_TYPES.LOAD_PROJECT,
   async (projectId: string) => {
     try {
       const { project } = await getProject(projectId);
@@ -18,7 +19,7 @@ export const loadProject = createAsyncThunk(
 );
 
 export const saveProject = createAsyncThunk(
-  "SAVE_PROJECT",
+  STROKES_ACTION_TYPES.SAVE_PROJECT,
   async ({ projectName, thumbnail }: TSaveProjectArg, { getState }) => {
     try {
       const response = await newProject(

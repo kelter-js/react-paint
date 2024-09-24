@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+import { PROJECT_LIST_ACTION_TYPES } from "../../entities/projectList";
 import { projectsListInitialState } from "../../constants";
 import { RootState } from "../../types";
 import fetchProjectsList from "./api";
 
 export const getProjectsList = createAsyncThunk(
-  "GET_PROJECTS_LIST",
+  PROJECT_LIST_ACTION_TYPES.GET_PROJECTS_LIST,
   async () => await fetchProjectsList()
 );
 
