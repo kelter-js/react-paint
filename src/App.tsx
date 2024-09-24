@@ -42,6 +42,7 @@ const App = (): JSX.Element => {
 
   const startDrawing = ({ nativeEvent }: MouseEvent<HTMLCanvasElement>) => {
     const { offsetX, offsetY } = nativeEvent;
+
     dispatch(beginStroke({ x: offsetX, y: offsetY }));
   };
 

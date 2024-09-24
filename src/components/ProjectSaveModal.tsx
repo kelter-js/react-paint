@@ -1,11 +1,11 @@
 import { useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../store";
 
-import { hide } from "../modules/modals/slice";
 import { getCanvasImage } from "../utils/canvasUtils";
-import { useCanvas } from "../CanvasContext";
 import { saveProject } from "../modules/strokes/slice";
+import { hide } from "../modules/modals/slice";
+import { useCanvas } from "../CanvasContext";
+import { AppDispatch } from "../store";
 import getBase64Thumbnail from "../utils/scaler";
 
 const ProjectSaveModal = () => {

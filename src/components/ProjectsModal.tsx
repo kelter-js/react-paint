@@ -1,13 +1,13 @@
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AppDispatch } from "../store";
-import { hide } from "../modules/modals/slice";
-import { loadProject } from "../modules/strokes/slice";
 import {
   getProjectsList,
   projectsListSelector,
 } from "../modules/projectsList/slice";
+import { loadProject } from "../modules/strokes/slice";
+import { hide } from "../modules/modals/slice";
+import { AppDispatch } from "../store";
 
 const ProjectsModal = () => {
   const dispatch = useDispatch<AppDispatch>();
